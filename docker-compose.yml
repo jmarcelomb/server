@@ -17,9 +17,8 @@ services:
       - APP_PORT=22300
       - SQLITE_DATABASE=/data/db.sqlite
     volumes:
-      - ./joplin:/data
+      - ./volumes/joplin:/data
     restart: unless-stopped
-    user: "1000:1000"
 
   # --------------------------------------------------------------------------------------------------------------------------
   # vaultwarden
@@ -35,7 +34,7 @@ services:
     environment:
       DOMAIN: "https://vw.marceloborges.dev"
     volumes:
-      - ./vaultwarden/vw-data/:/data/
+      - ./volumes/vaultwarden/:/data/
     ports:
       - 8140:80
     networks:
@@ -54,7 +53,7 @@ services:
     container_name: paperless-redis
     restart: unless-stopped
     volumes:
-      - ./paperless/volumes/redisdata:/data
+      - ./volumes/paperless/volumes/redisdata:/data
     networks:
       - internal
 
@@ -69,10 +68,10 @@ services:
     ports:
       - "8130:8000"
     volumes:
-      - ./paperless/volumes/data:/usr/src/paperless/data
-      - ./paperless/volumes/media:/usr/src/paperless/media
-      - ./paperless/export:/usr/src/paperless/export
-      - ./paperless/consume:/usr/src/paperless/consume
+      - ./volumes/paperless/volumes/data:/usr/src/paperless/data
+      - ./volumes/paperless/volumes/media:/usr/src/paperless/media
+      - ./volumes/paperless/export:/usr/src/paperless/export
+      - ./volumes/paperless/consume:/usr/src/paperless/consume
     env_file: docker-compose.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
@@ -119,9 +118,9 @@ services:
       - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./caddy/site:/srv
-      - ./caddy/caddy_data:/data
-      - ./caddy/caddy_config:/config
+      - ./volumes/caddy/site:/srv
+      - ./volumes/caddy/caddy_data:/data
+      - ./volumes/caddy/caddy_config:/config
     networks:
       - internal
 

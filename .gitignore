@@ -1,6 +1,3 @@
 docker-compose.env
 
-joplin/
-caddy/
-paperless/
-vaultwarden/
+volumes/

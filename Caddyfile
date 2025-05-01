@@ -26,5 +26,5 @@ vaultwarden.marceloborges.dev {
 }
 
 adguard.marceloborges.dev {
-    reverse_proxy http://adguardhome:3000
+    reverse_proxy http://adguardhome:80
 }

@@ -1,3 +1,0 @@
-[submodule "server-backup"]
-	path = server-backup
-	url = git@github.com:jmarcelomb/server-backup.git

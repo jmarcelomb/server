@@ -8,6 +8,7 @@ A Docker-based home server setup managing multiple services via `docker-compose`
 |---------|-------------|--------|--------------|
 | **Joplin** | Open-source note-taking app with sync | [joplin.marceloborges.dev](https://joplin.marceloborges.dev) | `./volumes/joplin` |
 | **Vaultwarden** | Self-hosted password manager (Bitwarden compatible) | [vaultwarden.marceloborges.dev](https://vaultwarden.marceloborges.dev) | `./volumes/vaultwarden` |
+| **AdGuard Home** | Network-wide ad and tracker blocking DNS server | [adguard.marceloborges.dev](https://adguard.marceloborges.dev) | `./volumes/adguardhome` |
 | **Paperless-ngx** | Document management system with OCR | [paperless.marceloborges.dev](https://paperless.marceloborges.dev) | `./volumes/paperless/*` |
 | **Caddy** | Reverse proxy and SSL manager | N/A | `./Caddyfile` |
 
@@ -22,13 +23,23 @@ A Docker-based home server setup managing multiple services via `docker-compose`
 2. Create `.env` file with required environment variables
 3. Create `docker-compose.env` file for Paperless-ngx configuration
 4. Set Joplin permissions: `sudo chmod -R 777 volumes/joplin`
-5. Start services: `docker-compose up -d`
+5. Create directories for AdGuard Home: `mkdir -p volumes/adguardhome/work volumes/adguardhome/conf`
+6. Start services: `docker-compose up -d`
 
 ### Management
 - Start: `docker-compose up -d`
 - Stop: `docker-compose down`
 
 All services auto-restart unless manually stopped. SSL certificates are managed automatically by Caddy.
+
+### AdGuard Home Setup
+After initial deployment, access the AdGuard Home setup wizard at [adguard.marceloborges.dev](https://adguard.marceloborges.dev) to complete configuration. The service uses port 53 for DNS queries, so ensure no other DNS service is running on your host machine.
+
+To use AdGuard Home as your DNS server:
+1. Complete the setup wizard
+
+2. Configure your router's DHCP to use your server's IP address as the DNS server
+3. Alternatively, configure individual devices to use your server's IP for DNS
 
 ## License
 MIT License

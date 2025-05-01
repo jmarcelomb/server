@@ -1,1 +1,4 @@
-joplin_data/
+docker-compose.env
+.env
+
+volumes/

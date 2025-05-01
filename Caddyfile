@@ -1,0 +1,26 @@
+{
+    email me@marceloborges.dev
+}
+casa-borges.duckdns.org {
+    reverse_proxy http://192.168.0.115:8123
+}
+
+celiaelando.duckdns.org {
+    reverse_proxy http://192.168.0.105:8123
+}
+
+jmmb.ddns.net {
+    reverse_proxy http://192.168.0.69:22
+}
+
+joplin.marceloborges.dev {
+    reverse_proxy http://joplin:22300
+}
+
+paperless.marceloborges.dev {
+    reverse_proxy http://webserver:8000
+}
+
+vaultwarden.marceloborges.dev {
+    reverse_proxy http://vaultwarden:80
+}

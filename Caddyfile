@@ -24,3 +24,7 @@ paperless.marceloborges.dev {
 vaultwarden.marceloborges.dev {
     reverse_proxy http://vaultwarden:80
 }
+
+adguard.marceloborges.dev {
+    reverse_proxy http://adguardhome:3000
+}

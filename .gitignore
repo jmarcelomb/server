@@ -1,1 +1,6 @@
-joplin_data/
+docker-compose.env
+
+joplin/
+caddy/
+paperless/
+vaultwarden/

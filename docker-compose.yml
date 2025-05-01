@@ -11,7 +11,7 @@ services:
     image: joplin/server:latest
     container_name: joplin
     ports:
-      - "8120:22300"
+      - "22300"
     environment:
       - APP_BASE_URL=https://joplin.marceloborges.dev
       - APP_PORT=22300
@@ -39,8 +39,6 @@ services:
       ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
     volumes:
       - ./volumes/vaultwarden/:/data/
-    ports:
-      - 8140:80
     networks:
       - internal
 
@@ -70,7 +68,7 @@ services:
       - gotenberg
       - tika
     ports:
-      - "8130:8000"
+      - "8000"
     volumes:
       - ./volumes/paperless/volumes/data:/usr/src/paperless/data
       - ./volumes/paperless/volumes/media:/usr/src/paperless/media

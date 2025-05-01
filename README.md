@@ -19,7 +19,7 @@ A Docker-based home server setup managing multiple services via `docker-compose`
 
 ### Setup
 1. Clone repo and navigate to directory
-2. Create `.env` file with `VAULTWARDEN_ADMIN_TOKEN` (generate with `docker run --rm -it vaultwarden/server /vaultwarden hash`)
+2. Create `.env` file with required environment variables
 3. Create `docker-compose.env` file for Paperless-ngx configuration
 4. Set Joplin permissions: `sudo chmod -R 777 volumes/joplin`
 5. Start services: `docker-compose up -d`
@@ -37,7 +37,11 @@ MIT License
 
 ### `.env` Example
 ```
+# Token for Vaultwarden admin access
 VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$your_generated_hash'
+
+# Project name for docker-compose (prefixes containers, isolates networks)
+COMPOSE_PROJECT_NAME=homeserver
 ```
 
 ### `docker-compose.env` Example

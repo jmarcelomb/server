@@ -19,6 +19,8 @@ services:
     volumes:
       - ./volumes/joplin:/data
     restart: unless-stopped
+    networks:
+      - internal
 
   # --------------------------------------------------------------------------------------------------------------------------
   # vaultwarden
@@ -32,7 +34,9 @@ services:
     container_name: vaultwarden
     restart: unless-stopped
     environment:
-      DOMAIN: "https://vw.marceloborges.dev"
+      DOMAIN: "https://vaultwarden.marceloborges.dev"
+      SIGNUPS_ALLOWED: false
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
     volumes:
       - ./volumes/vaultwarden/:/data/
     ports:
@@ -109,7 +113,7 @@ services:
   # It is easy to configure and can automatically obtain and renew SSL certificates from Let's Encrypt.
 
   caddy:
-    image: caddy:2.10.0
+    image: caddy:2
     container_name: caddy
     restart: unless-stopped
     ports:
@@ -126,4 +130,5 @@ services:
 
 networks:
   internal:
+    external: false
     driver: bridge

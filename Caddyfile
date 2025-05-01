@@ -1,3 +1,6 @@
+{
+    email me@marceloborges.dev
+}
 casa-borges.duckdns.org {
     reverse_proxy http://192.168.0.115:8123
 }
@@ -11,13 +14,13 @@ jmmb.ddns.net {
 }
 
 joplin.marceloborges.dev {
-    reverse_proxy http://192.168.0.120:8120
+    reverse_proxy http://joplin:22300
 }
 
 paperless.marceloborges.dev {
-    reverse_proxy http://192.168.0.120:8130
+    reverse_proxy http://webserver:8000
 }
 
-vw.marceloborges.dev {
-    reverse_proxy http://192.168.0.120:8140
+vaultwarden.marceloborges.dev {
+    reverse_proxy http://vaultwarden:80
 }

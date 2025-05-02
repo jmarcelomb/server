@@ -74,7 +74,7 @@ PAPERLESS_URL=https://paperless.marceloborges.dev
 
 # Adjust this key if you plan to make paperless available publicly. It should
 # be a very long sequence of random characters.
-PAPERLESS_SECRET_KEY=7bb0bfdf686f7751165b4b7a019f3f39eec2210132833cadfe31ca5ffd5bce71
+PAPERLESS_SECRET_KEY=
 
 # Use this variable to set a timezone for the Paperless Docker containers.
 PAPERLESS_TIME_ZONE=Europe/Lisbon

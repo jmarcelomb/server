@@ -172,12 +172,6 @@ services:
       - internal
     security_opt:
       - no-new-privileges:true
-    # Additional permissions for docker socket access
-    group_add:
-      - ${DOCKER_GROUP_ID:-131}  # Docker group ID from your system (131)
-    environment:
-      - PUID=1000
-      - PGID=1000
 
   # --------------------------------------------------------------------------------------------------------------------------
   # cloudflare-ddns

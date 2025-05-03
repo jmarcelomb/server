@@ -72,6 +72,9 @@ VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$your_generated_hash'
 # Token for Cloudflare Edit Zone DNS API token
 CLOUDFLARE_API_TOKEN=your_generated_edit_zone_dns_api_token
 
+# Docker group ID for Uptime Kuma container access
+DOCKER_GROUP_ID=131
+
 # Project name for docker-compose (prefixes containers, isolates networks)
 COMPOSE_PROJECT_NAME=homeserver
 ```

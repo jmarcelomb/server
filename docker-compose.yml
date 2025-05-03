@@ -54,9 +54,9 @@ services:
     container_name: adguardhome
     restart: unless-stopped
     ports:
-      - "53:53/tcp"   # DNS
-      - "53:53/udp"   # DNS
-      - "80/tcp"   # Portal
+      - "53:53/tcp" # DNS
+      - "53:53/udp" # DNS
+      - "80/tcp" # Portal
       - "3000:3000/tcp" # Admin panel
     volumes:
       - ./volumes/adguardhome/work:/opt/adguardhome/work
@@ -169,7 +169,7 @@ services:
     security_opt: [no-new-privileges:true]
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
-      - DOMAINS=joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguardhome.marceloborges.dev,paperless.marceloborges.dev
+      - DOMAINS=joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguardhome.marceloborges.dev,paperless.marceloborges.dev,casa-borges.marceloborges.dev
       - PROXIED=false
 
 networks:

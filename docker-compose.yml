@@ -167,6 +167,7 @@ services:
       - "3001"
     volumes:
       - ./volumes/uptime-kuma:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - internal
     security_opt:

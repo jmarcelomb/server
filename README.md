@@ -12,6 +12,7 @@ A Docker-based home server setup managing multiple services via `docker-compose`
 | **Paperless-ngx** | Document management system with OCR | [paperless.marceloborges.dev](https://paperless.marceloborges.dev) | `./volumes/paperless/*` |
 | **Caddy** | Reverse proxy and SSL manager | N/A | `./Caddyfile` |
 | **Cloudflare DDNS** | Dynamic DNS updater for Cloudflare domains | N/A | N/A |
+| **Uptime Kuma** | Self-hosted monitoring tool | [uptime.marceloborges.dev](https://uptime.marceloborges.dev) | `./volumes/uptime-kuma` |
 
 ## Quick Start
 
@@ -40,6 +41,15 @@ To use AdGuard Home as your DNS server:
 1. Complete the setup wizard
 2. Configure your router's DHCP to use your server's IP address as the DNS server
 3. Alternatively, configure individual devices to use your server's IP for DNS
+
+### Uptime Kuma Setup
+After initial deployment, access Uptime Kuma at [uptime.marceloborges.dev](https://uptime.marceloborges.dev) to complete setup. On first access, you'll be prompted to create an administrator account.
+
+To monitor your services:
+1. Complete the initial setup by creating an admin account
+2. Add monitors for your websites and services
+3. Configure notification methods (email, Telegram, Discord, etc.)
+4. Optionally set up status pages to share with others
 
 ### Cloudflare DDNS Setup
 The Cloudflare DDNS service automatically updates your domain's DNS records with your current IP address. This is useful if your ISP assigns you a dynamic IP address.

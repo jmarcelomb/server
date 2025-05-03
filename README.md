@@ -11,6 +11,7 @@ A Docker-based home server setup managing multiple services via `docker-compose`
 | **AdGuard Home** | Network-wide ad and tracker blocking DNS server | [adguard.marceloborges.dev](https://adguard.marceloborges.dev) | `./volumes/adguardhome` |
 | **Paperless-ngx** | Document management system with OCR | [paperless.marceloborges.dev](https://paperless.marceloborges.dev) | `./volumes/paperless/*` |
 | **Caddy** | Reverse proxy and SSL manager | N/A | `./Caddyfile` |
+| **Cloudflare DDNS** | Dynamic DNS updater for Cloudflare domains | N/A | N/A |
 
 ## Quick Start
 
@@ -37,9 +38,16 @@ After initial deployment, access the AdGuard Home setup wizard at [adguard.marce
 
 To use AdGuard Home as your DNS server:
 1. Complete the setup wizard
-
 2. Configure your router's DHCP to use your server's IP address as the DNS server
 3. Alternatively, configure individual devices to use your server's IP for DNS
+
+### Cloudflare DDNS Setup
+The Cloudflare DDNS service automatically updates your domain's DNS records with your current IP address. This is useful if your ISP assigns you a dynamic IP address.
+
+To set up Cloudflare DDNS:
+1. Create a Cloudflare API token with Edit Zone DNS permissions
+2. Add the token to your `.env` file as `CLOUDFLARE_API_TOKEN`
+3. Configure the domains to update in the `docker-compose.yml` file under the `cloudflare-ddns` service
 
 ## License
 MIT License
@@ -50,6 +58,9 @@ MIT License
 ```
 # Token for Vaultwarden admin access
 VAULTWARDEN_ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$your_generated_hash'
+
+# Token for Cloudflare Edit Zone DNS API token
+CLOUDFLARE_API_TOKEN=your_generated_edit_zone_dns_api_token
 
 # Project name for docker-compose (prefixes containers, isolates networks)
 COMPOSE_PROJECT_NAME=homeserver

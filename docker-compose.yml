@@ -153,6 +153,26 @@ services:
       - internal
 
   # --------------------------------------------------------------------------------------------------------------------------
+  # uptime-kuma
+  # --------------------------------------------------------------------------------------------------------------------------
+  # Uptime Kuma is a self-hosted monitoring tool like "Uptime Robot"
+  # It provides an easy-to-use interface for monitoring your websites and services
+  # Features include status pages, notifications, and detailed monitoring statistics
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: unless-stopped
+    ports:
+      - "3001"
+    volumes:
+      - ./volumes/uptime-kuma:/app/data
+    networks:
+      - internal
+    security_opt:
+      - no-new-privileges:true
+
+  # --------------------------------------------------------------------------------------------------------------------------
   # cloudflare-ddns
   # --------------------------------------------------------------------------------------------------------------------------
   # Cloudflare DDNS service to keep your DNS records updated with your dynamic IP address
@@ -169,7 +189,7 @@ services:
     security_opt: [no-new-privileges:true]
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
-      - DOMAINS=joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguardhome.marceloborges.dev,paperless.marceloborges.dev,casa-borges.marceloborges.dev
+      - DOMAINS=joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguardhome.marceloborges.dev,paperless.marceloborges.dev,casa-borges.marceloborges.dev,uptime.marceloborges.dev
       - PROXIED=false
 
 networks:

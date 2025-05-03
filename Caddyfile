@@ -32,3 +32,7 @@ vaultwarden.marceloborges.dev {
 adguard.marceloborges.dev {
     reverse_proxy http://adguardhome:80
 }
+
+uptime.marceloborges.dev {
+    reverse_proxy http://uptime-kuma:3001
+}

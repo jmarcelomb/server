@@ -151,6 +151,26 @@ services:
     networks:
       - internal
 
+  # --------------------------------------------------------------------------------------------------------------------------
+  # cloudflare-ddns
+  # --------------------------------------------------------------------------------------------------------------------------
+  # Cloudflare DDNS service to keep your DNS records updated with your dynamic IP address
+  # Automatically updates A and AAAA records to point to your current IP address
+
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: cloudflare-ddns
+    network_mode: host
+    restart: unless-stopped
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [all]
+    security_opt: [no-new-privileges:true]
+    environment:
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+      - DOMAINS=joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguardhome.marceloborges.dev,paperless.marceloborges.dev
+      - PROXIED=false
+
 networks:
   internal:
     external: false

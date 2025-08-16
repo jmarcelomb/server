@@ -13,6 +13,10 @@ celiaelando.duckdns.org {
     reverse_proxy http://192.168.0.105:8123
 }
 
+celiaelando.marceloborges.dev {
+    reverse_proxy http://192.168.0.105:8123
+}
+
 jmmb.ddns.net {
     reverse_proxy http://192.168.0.69:22
 }

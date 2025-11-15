@@ -1,5 +1,5 @@
 {
-    email me@marceloborges.dev
+    email letsencrypt@marceloborges.dev
 }
 casa-borges.duckdns.org {
     reverse_proxy http://192.168.0.115:8123
@@ -22,15 +22,15 @@ jmmb.ddns.net {
 }
 
 joplin.marceloborges.dev {
-    reverse_proxy http://joplin:22300
+    reverse_proxy http://joplin:30106
 }
 
 paperless.marceloborges.dev {
-    reverse_proxy http://webserver:8000
+    reverse_proxy http://truenas.home:30070
 }
 
 vaultwarden.marceloborges.dev {
-    reverse_proxy http://vaultwarden:80
+    reverse_proxy http://truenas.home:30032
 }
 
 adguard.marceloborges.dev {
@@ -39,4 +39,8 @@ adguard.marceloborges.dev {
 
 uptime.marceloborges.dev {
     reverse_proxy http://uptime-kuma:3001
+}
+
+immich.marceloborges.dev {
+    reverse_proxy http://truenas.home:30041
 }

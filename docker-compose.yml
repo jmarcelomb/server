@@ -64,7 +64,7 @@ services:
     security_opt: ["no-new-privileges:true"]
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
-      - DOMAINS=joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguard.marceloborges.dev,paperless.marceloborges.dev,uptime.marceloborges.dev,casa-borges.marceloborges.dev,casa-borges.marceloborges.dev,celiaelando.marceloborges.dev
+      - DOMAINS=immich.marceloborges.dev,joplin.marceloborges.dev,vaultwarden.marceloborges.dev,adguard.marceloborges.dev,paperless.marceloborges.dev,uptime.marceloborges.dev,casa-borges.marceloborges.dev,casa-borges.marceloborges.dev,celiaelando.marceloborges.dev
       - PROXIED=false
 
 networks:

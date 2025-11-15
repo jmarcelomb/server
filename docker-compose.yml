@@ -1,48 +1,5 @@
 services:
   # --------------------------------------------------------------------------------------------------------------------------
-  # joplin
-  # --------------------------------------------------------------------------------------------------------------------------
-  # Joplin is an open-source note-taking and to-do application with synchronization capabilities.
-  # It is designed to be easy to use and has a web clipper for saving web pages and articles.
-  # Joplin is a great alternative to Evernote and other note-taking applications.
-  # It is available on multiple platforms, including Windows, macOS, Linux, Android, and iOS.
-
-  joplin:
-    image: joplin/server:latest
-    container_name: joplin
-    ports:
-      - "22300"
-    environment:
-      - APP_BASE_URL=https://joplin.marceloborges.dev
-      - APP_PORT=22300
-      - SQLITE_DATABASE=/data/db.sqlite
-    volumes:
-      - ./volumes/joplin:/data
-    restart: unless-stopped
-    networks:
-      - internal
-
-  # --------------------------------------------------------------------------------------------------------------------------
-  # vaultwarden
-  # --------------------------------------------------------------------------------------------------------------------------
-  # Vaultwarden is a lightweight, self-hosted password manager that is compatible with Bitwarden.
-  # It is written in Rust and is designed to be easy to set up and use.
-  # It is a great alternative to Bitwarden if you want to self-host your password manager.
-
-  vaultwarden:
-    image: vaultwarden/server:latest
-    container_name: vaultwarden
-    restart: unless-stopped
-    environment:
-      DOMAIN: "https://vaultwarden.marceloborges.dev"
-      SIGNUPS_ALLOWED: false
-      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
-    volumes:
-      - ./volumes/vaultwarden/:/data/
-    networks:
-      - internal
-
-  # --------------------------------------------------------------------------------------------------------------------------
   # adguard home
   # --------------------------------------------------------------------------------------------------------------------------
   # AdGuard Home is a network-wide ad and tracker blocking DNS server.
@@ -69,68 +26,6 @@ services:
       - NET_ADMIN
 
   # --------------------------------------------------------------------------------------------------------------------------
-  # paperless-ngx
-  # --------------------------------------------------------------------------------------------------------------------------
-  # Paperless-ngx is a document management system that allows you to scan, upload, and manage your documents.
-  # It is a fork of the original Paperless project and is actively maintained.
-  # It uses OCR to extract text from scanned documents and allows you to search for documents by their content.
-  # It also has a web interface that allows you to view and manage your documents.
-
-  broker:
-    image: docker.io/library/redis:7
-    container_name: paperless-redis
-    restart: unless-stopped
-    volumes:
-      - ./volumes/paperless/volumes/redisdata:/data
-    networks:
-      - internal
-
-  webserver:
-    image: ghcr.io/paperless-ngx/paperless-ngx:latest
-    container_name: paperless-webserver
-    restart: unless-stopped
-    depends_on:
-      - broker
-      - gotenberg
-      - tika
-    ports:
-      - "8000"
-    volumes:
-      - ./volumes/paperless/volumes/data:/usr/src/paperless/data
-      - ./volumes/paperless/volumes/media:/usr/src/paperless/media
-      - ./volumes/paperless/export:/usr/src/paperless/export
-      - ./volumes/paperless/consume:/usr/src/paperless/consume
-    env_file: docker-compose.env
-    environment:
-      PAPERLESS_REDIS: redis://broker:6379
-      PAPERLESS_TIKA_ENABLED: 1
-      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
-      PAPERLESS_TIKA_ENDPOINT: http://tika:9998
-    networks:
-      - internal
-
-  gotenberg:
-    image: docker.io/gotenberg/gotenberg:8.7
-    container_name: paperless-gotenberg
-    restart: unless-stopped
-
-    # The gotenberg chromium route is used to convert .eml files. We do not
-    # want to allow external content like tracking pixels or even javascript.
-    command:
-      - "gotenberg"
-      - "--chromium-disable-javascript=true"
-      - "--chromium-allow-list=file:///tmp/.*"
-    networks:
-      - internal
-
-  tika:
-    image: docker.io/apache/tika:latest
-    container_name: paperless-tika
-    restart: unless-stopped
-    networks:
-      - internal
-
-  # --------------------------------------------------------------------------------------------------------------------------
   # caddy
   # --------------------------------------------------------------------------------------------------------------------------
   # Caddy is a powerful web server that can be used as a reverse proxy, load balancer, and more.
@@ -151,27 +46,6 @@ services:
       - ./volumes/caddy/caddy_config:/config
     networks:
       - internal
-
-  # --------------------------------------------------------------------------------------------------------------------------
-  # uptime-kuma
-  # --------------------------------------------------------------------------------------------------------------------------
-  # Uptime Kuma is a self-hosted monitoring tool like "Uptime Robot"
-  # It provides an easy-to-use interface for monitoring your websites and services
-  # Features include status pages, notifications, and detailed monitoring statistics
-
-  uptime-kuma:
-    image: louislam/uptime-kuma:latest
-    container_name: uptime-kuma
-    restart: unless-stopped
-    ports:
-      - "3001"
-    volumes:
-      - ./volumes/uptime-kuma:/app/data
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - internal
-    security_opt:
-      - no-new-privileges:true
 
   # --------------------------------------------------------------------------------------------------------------------------
   # cloudflare-ddns

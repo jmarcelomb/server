@@ -22,7 +22,7 @@ jmmb.ddns.net {
 }
 
 joplin.marceloborges.dev {
-    reverse_proxy http://joplin:30106
+    reverse_proxy http://truenas.home:30106
 }
 
 paperless.marceloborges.dev {

@@ -11,7 +11,7 @@ ci:
     See https://pre-commit.ci for details.
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -25,10 +25,10 @@ repos:
       - id: destroyed-symlinks
       - id: detect-private-key
   - repo: https://github.com/crate-ci/typos
-    rev: v1
+    rev: typos-dict-v0.13.13
     hooks:
       - id: typos
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.3
+    rev: v8.30.0
     hooks:
       - id: gitleaks
